@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day2-Task</title>
+</head>
+<body>
+
+  <script>
+    function countChocolates(totalMoney, chocolateCost) {
+  // Extracting the numerical values from the input strings
+  var money = parseInt(totalMoney);
+  var cost = parseInt(chocolateCost);
+
+  // Checking if the input values are valid
+  if (isNaN(money) || isNaN(cost) || money < 0 || cost <= 0) {
+    return "Invalid Input";
+  }
+
+  // Calculating the initial number of chocolates Ashi can buy
+  var initialChocolates = Math.floor(money / cost);
+
+  // Calculating the additional chocolates Ashi can get from wrappers
+  var wrappers = initialChocolates;
+  var additionalChocolates = 0;
+  while (wrappers >= 3) {
+    var newChocolates = Math.floor(wrappers / 3);
+    additionalChocolates += newChocolates;
+    wrappers = newChocolates + (wrappers % 3);
+  }
+
+  // Calculating the total number of chocolates Ashi can eat
+  var totalChocolates = initialChocolates + additionalChocolates;
+
+  return totalChocolates;
+}
+
+  </script>
+  
+</body>
+</html>

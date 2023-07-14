@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day1-Task</title>
+</head>
+<body>
+    <script>
+    
+    function numbersThenCharacters(arr) {
+        function isNumber(element) {
+          return typeof element === 'number' && isFinite(element);
+        }
+      
+        function isLetter(element) {
+          return typeof element === 'string' && /^[a-zA-Z]$/.test(element);
+        }
+      
+        function sortNumbers(a, b) {
+          return a - b;
+        }
+      
+        function sortLetters(a, b) {
+          return a.localeCompare(b);
+        }
+      
+        for (var i = 0; i < arr.length; i++) {
+          var subArr = arr[i];
+          var numbers = subArr.filter(isNumber);
+          var letters = subArr.filter(isLetter);
+          numbers.sort(sortNumbers);
+          letters.sort(sortLetters);
+          var sortedSubArr = [];
+          var numIdx = 0;
+          var letIdx = 0;
+          for (var j = 0; j < subArr.length; j++) {
+            if (isNumber(subArr[j])) {
+              sortedSubArr.push(numbers[numIdx]);
+              numIdx++;
+            } else if (isLetter(subArr[j])) {
+              sortedSubArr.push(letters[letIdx]);
+              letIdx++;
+            }
+          }
+          arr[i] = sortedSubArr;
+        }
+        return arr;
+      }
+      
+      var array = [
+        [11, 12, 24, 23, "a", "b"],
+        [56, "c", 45],
+        [67, "d"],
+        ["f", "e", 78]
+      ];
+      var sortedArray = numbersThenCharacters(array);
+      console.log(sortedArray);
+      </script>
+      
+</body>
+</html>
